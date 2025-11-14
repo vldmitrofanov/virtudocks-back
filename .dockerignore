@@ -1,0 +1,5 @@
+.git
+*.db
+*.log
+node_modules
+dist
