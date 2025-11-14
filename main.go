@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strconv"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -33,7 +34,17 @@ func main() {
 	}
 
 	// Open (or create) SQLite DB
-	db, err = sql.Open("sqlite3", "data.db")
+	dbPath := os.Getenv("DB_PATH")
+	if dbPath == "" {
+		dbPath = "data/data.db"
+	}
+
+	if err := os.MkdirAll(filepath.Dir(dbPath), 0o755); err != nil {
+		log.Fatalf("failed to create DB dir: %v", err)
+	}
+
+	// Open (or create) SQLite DB
+	db, err = sql.Open("sqlite3", dbPath)
 	if err != nil {
 		log.Fatalf("open db: %v", err)
 	}
