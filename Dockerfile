@@ -45,4 +45,4 @@ EXPOSE 8080
 
 
 # Data file will be data.db in /app
-CMD ["./server"]
+CMD ["server"]
