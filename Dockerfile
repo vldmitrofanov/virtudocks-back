@@ -32,6 +32,13 @@ WORKDIR /app
 # Copy compiled binary from builder
 COPY --from=builder /app/server .
 
+# Directory for SQLite DB
+RUN mkdir -p /data
+
+# Default envs (override in docker run/deploy script)
+ENV EXPORT_PASSWORD=changeme
+ENV DB_PATH=/data/data.db
+
 # Expose HTTP port
 EXPOSE 8080
 
