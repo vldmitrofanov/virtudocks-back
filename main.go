@@ -36,7 +36,7 @@ func main() {
 	// Open (or create) SQLite DB
 	dbPath := os.Getenv("DB_PATH")
 	if dbPath == "" {
-		dbPath = "data/data.db"
+		dbPath = "/data/data.db"
 	}
 
 	if err := os.MkdirAll(filepath.Dir(dbPath), 0o755); err != nil {
